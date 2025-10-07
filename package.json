@@ -3,6 +3,7 @@
   "displayName": "GoPluto AI Chat",
   "description": "Quick human expert help for your code. Powered by GoPluto AI.",
   "version": "1.0.0",
+  "license": "MIT",
   "publisher": "gopluto-ai",
   "engines": {
     "vscode": "^1.75.0"
