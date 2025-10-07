@@ -1,0 +1,158 @@
+{
+  "name": "gopluto-ai-chat",
+  "displayName": "GoPluto AI Chat",
+  "description": "Quick human expert help for your code. Powered by GoPluto AI.",
+  "version": "1.0.0",
+  "publisher": "gopluto-ai",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1E1E1E",
+    "theme": "dark"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Debuggers",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "chat",
+    "code help",
+    "debugging",
+    "expert assistance",
+    "gopluto"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "icon": "images/icon.png",
+          "id": "gopluto-ai-view",
+          "name": "GoPluto AI",
+          "when": "true"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "gopluto-ai-view",
+        "contents": "🚀 **GoPluto AI Expert Help**\n\nGet instant expert assistance for your code issues!\n\n[Open Chat](command:gopluto-ai-chat.openChat)\n[New Chat](command:gopluto-ai-chat.newChat)\n[Get API Key](command:gopluto-ai-chat.getApiKey)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "gopluto-ai-chat.openChat",
+        "title": "Open GoPluto AI Chat",
+        "category": "GoPluto AI",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "gopluto-ai-chat.newChat",
+        "title": "New Chat Session",
+        "category": "GoPluto AI",
+        "icon": "$(add)"
+      },
+      {
+        "command": "gopluto-ai-chat.clearAll",
+        "title": "Clear All Conversations",
+        "category": "GoPluto AI",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "gopluto-ai-chat.quickFixWithExpert",
+        "title": "Get help from GoPluto AI Experts",
+        "category": "GoPluto AI",
+        "icon": "$(lightbulb)"
+      },
+      {
+        "command": "gopluto-ai-chat.getApiKey",
+        "title": "Get GoPluto AI API Key",
+        "category": "GoPluto AI",
+        "icon": "$(key)"
+      },
+      {
+        "command": "gopluto-ai-chat.openDashboard",
+        "title": "Open GoPluto Dashboard",
+        "category": "GoPluto AI",
+        "icon": "$(dashboard)"
+      }
+    ],
+    "menus": {
+      "command palette": [
+        {
+          "command": "gopluto-ai-chat.openChat"
+        },
+        {
+          "command": "gopluto-ai-chat.newChat"
+        },
+        {
+          "command": "gopluto-ai-chat.quickFixWithExpert"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "gopluto-ai-chat.quickFixWithExpert",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "gopluto-ai-chat.openChat",
+          "when": "true",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GoPluto AI Chat",
+      "properties": {
+        "goplutoAiChat.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API Key for GoPluto AI (get it from https://gopluto.ai)",
+          "scope": "application"
+        },
+        "goplutoAiChat.enableQuickFixes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable GoPluto AI Quick Fix suggestions in the editor",
+          "scope": "application"
+        },
+        "goplutoAiChat.autoOpenChat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open chat panel when using quick fixes",
+          "scope": "application"
+        },
+        "goplutoAiChat.showWelcomeBanner": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show welcome banner in chat panel",
+          "scope": "application"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "build": "npm run compile && npm run package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {}
+}
